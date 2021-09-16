@@ -14,6 +14,8 @@
 		9D85E4AC26F2F497003304FD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A826F2F497003304FD /* ApiManager.swift */; };
 		9D85E4AD26F2F497003304FD /* ReachAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A926F2F497003304FD /* ReachAbility.swift */; };
 		9D85E4AE26F2F497003304FD /* OriginURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4AA26F2F497003304FD /* OriginURLSession.swift */; };
+		9D85E4B126F32112003304FD /* GalaxyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4B026F32112003304FD /* GalaxyData.swift */; };
+		9D85E4B426F32246003304FD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4B326F32246003304FD /* Functions.swift */; };
 		9DF2EE5526F2C3DE003E3BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2EE5426F2C3DE003E3BB4 /* AppDelegate.swift */; };
 		9DF2EE5926F2C3DE003E3BB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2EE5826F2C3DE003E3BB4 /* ViewController.swift */; };
 		9DF2EE5E26F2C3E0003E3BB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DF2EE5D26F2C3E0003E3BB4 /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 		9D85E4A826F2F497003304FD /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		9D85E4A926F2F497003304FD /* ReachAbility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachAbility.swift; sourceTree = "<group>"; };
 		9D85E4AA26F2F497003304FD /* OriginURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginURLSession.swift; sourceTree = "<group>"; };
+		9D85E4B026F32112003304FD /* GalaxyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyData.swift; sourceTree = "<group>"; };
+		9D85E4B326F32246003304FD /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		9DF2EE5126F2C3DE003E3BB4 /* NasaGalaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaGalaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF2EE5426F2C3DE003E3BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DF2EE5826F2C3DE003E3BB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,23 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		9D85E4AF26F320DA003304FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9D85E4B026F32112003304FD /* GalaxyData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9D85E4B226F321F3003304FD /* Galaxy */ = {
+			isa = PBXGroup;
+			children = (
+				9D85E4A426F2F497003304FD /* View */,
+				9D85E4AF26F320DA003304FD /* Model */,
+			);
+			path = Galaxy;
+			sourceTree = "<group>";
+		};
 		9DF2EE4826F2C3DD003E3BB4 = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +129,9 @@
 		9DF2EE5326F2C3DE003E3BB4 /* NasaGalaxy */ = {
 			isa = PBXGroup;
 			children = (
+				9D85E4B226F321F3003304FD /* Galaxy */,
 				9D85E4A526F2F497003304FD /* Extensions */,
 				9D85E4A726F2F497003304FD /* Network */,
-				9D85E4A426F2F497003304FD /* View */,
 				9D85E49E26F2F481003304FD /* Class */,
 				9D85E49826F2F457003304FD /* Config.swift */,
 				9DF2EE5426F2C3DE003E3BB4 /* AppDelegate.swift */,
@@ -118,6 +139,7 @@
 				9DF2EE5D26F2C3E0003E3BB4 /* Assets.xcassets */,
 				9DF2EE5F26F2C3E0003E3BB4 /* LaunchScreen.storyboard */,
 				9DF2EE6226F2C3E0003E3BB4 /* Info.plist */,
+				9D85E4B326F32246003304FD /* Functions.swift */,
 			);
 			path = NasaGalaxy;
 			sourceTree = "<group>";
@@ -195,11 +217,13 @@
 				9D85E4AE26F2F497003304FD /* OriginURLSession.swift in Sources */,
 				9D85E4AB26F2F497003304FD /* Dictionary+Data.swift in Sources */,
 				9D85E4A226F2F481003304FD /* CZMutexLock.swift in Sources */,
+				9D85E4B426F32246003304FD /* Functions.swift in Sources */,
 				9D85E4AC26F2F497003304FD /* ApiManager.swift in Sources */,
 				9DF2EE5526F2C3DE003E3BB4 /* AppDelegate.swift in Sources */,
 				9D85E49D26F2F457003304FD /* Config.swift in Sources */,
 				9D85E4AD26F2F497003304FD /* ReachAbility.swift in Sources */,
 				9D85E4A326F2F481003304FD /* ThreadSafeDictionary.swift in Sources */,
+				9D85E4B126F32112003304FD /* GalaxyData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

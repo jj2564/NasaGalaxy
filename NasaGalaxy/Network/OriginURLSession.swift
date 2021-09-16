@@ -14,7 +14,6 @@ class OriginURLSession: NSObject {
     private var session: URLSession!
     /// 儲存req用，因為在移除重複的時候可能遇到多執行序，所以要採thread safe
     private var tasks: ThreadSafeDictionary<ApiRequest, URLSessionDataTask> = [:]
-    
     /// 超時時間限制，value = 10
     private let timeout: TimeInterval = 10
     
@@ -76,8 +75,6 @@ class OriginURLSession: NSObject {
     }
     
     /// 取消目前連線
-    ///
-    /// - Parameter req: see more ApiRequest
     public func cancel(in req: ApiRequest) {
         tasks[req]?.cancel()
         print("⛔️ Cancel \(String(describing: tasks[req]))")

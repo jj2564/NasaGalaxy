@@ -4,6 +4,9 @@
 //
 //  Created by IrvingHuang on 2021/9/16.
 //
+
+// 網路資源
+
 import Foundation
 import SystemConfiguration
 

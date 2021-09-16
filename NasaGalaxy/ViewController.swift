@@ -19,29 +19,21 @@ class ViewController: UIViewController {
             switch result {
             case .success(let data):
                 do {
-                    let object = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    let decoder = JSONDecoder()
+                    let model = try decoder.decode([GalaxyData].self, from: data)
 
-                    print(object)
+                    if model.count > 0 {
+                        print(model.first?.title ?? "")
+                    }
+                    
                 } catch let error {
                     print(error)
                 }
-            case .failure(let error):
-                break
+            default: break
             }
 
 
         }
-        
-//        if let urlString = "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: urlString) {
-//           let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//              if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) {
-//                 print(json)
-//              }
-//           }
-//           task.resume()
-//        }
     }
-
-
 }
 
