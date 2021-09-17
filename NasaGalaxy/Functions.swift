@@ -5,6 +5,8 @@
 //  Created by IrvingHuang on 2021/9/16.
 //
 
+// 專案內會用到的常用Functions
+
 import Foundation
 import UIKit
 
