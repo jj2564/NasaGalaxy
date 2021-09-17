@@ -11,6 +11,7 @@ import Foundation
 
 /// Api callback `completion`
 typealias Completion = (Result<Data, ApiError>) -> Void
+let decoder = JSONDecoder()
 
 enum ApiError: Error {
     
@@ -20,61 +21,104 @@ enum ApiError: Error {
     
     case nilData
     
+    case jsonError
+    
     var message: String {
         switch self {
         case .networkError: return "網路連線錯誤"
         case .invalidUrl: return "網址錯誤"
         case .nilData: return "無資料"
+        case .jsonError: return "JSON解析錯誤"
         }
     }
 }
 
-/// Http Request
-public struct ApiRequest: Hashable {
-    
+protocol ApiRequest: Hashable {
+    associatedtype Response: Decodable
+    var urlString: String { get set }
+    var url: URL? { get }
+}
+
+extension ApiRequest {
     var url: URL? { URL(string: urlString) }
-    
-    private var urlString: String = ""
-    
-    init( urlString: String) {
-        self.urlString = urlString
-    }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(urlString)
     }
     // 比對 urlString
-    public static func == (lhs: ApiRequest, rhs: ApiRequest) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return  lhs.urlString == rhs.urlString
     }
 }
 
-struct ApiManager {
+class ApiManager: NSObject {
     
-    private init() {}
+    static let share = ApiManager()
     
-    public static func request(from req: ApiRequest, completion: Completion?) {
-        
-        OriginURLSession.share.fetch(from: req) { (result) in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async {
-                    completion?(.success(data))
-                }
-            case .failure(let err):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    completion?(.failure(err))
-                })
-            }
+    private var session: URLSession!
+    /// 超時時間限制，value = 10
+    private let timeout: TimeInterval = 10
+    
+    private override init() {
+        super.init()
+        let config: URLSessionConfiguration = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = timeout
+        config.timeoutIntervalForResource = timeout
+        config.networkServiceType = .background
+        session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+    }
+    
+    public func fetch<Req: ApiRequest>(from req: Req, completion: @escaping (Result<Req.Response, ApiError>) -> Void) {
+        let reachability = try? Reachability()
+        guard let r = reachability, r.isConnectedToNetwork else {
+            completion(.failure(ApiError.networkError))
+            return
         }
-    }
-    /// 取消目前連線
-    public static func cancel(in req: ApiRequest) {
-        OriginURLSession.share.cancel(in: req)
+        guard let url = req.url else {
+            completion(.failure(ApiError.invalidUrl))
+            return
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = timeout
+        
+        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+            guard let _ = (response as? HTTPURLResponse)?.statusCode else {
+                completion(.failure(ApiError.networkError))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(ApiError.networkError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(ApiError.nilData))
+                return
+            }
+            
+            guard let value = try? decoder.decode(Req.Response.self, from: data) else {
+                completion(.failure(ApiError.jsonError))
+                return
+            }
+            completion(.success(value))
+        }
+        
+        task.resume()
     }
     
-    /// 取消目前所有連線
-    public static func cancelAll() {
-        OriginURLSession.share.cancelAll()
-    }
+
+}
+
+extension ApiManager: URLSessionDownloadDelegate {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) { }
+    
+    // Send Data
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64,
+                    totalBytesSent: Int64, totalBytesExpectedToSend: Int64) { }
+    
+    // Download Data
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) { }
 }

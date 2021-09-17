@@ -39,3 +39,9 @@ struct GalaxyData: Decodable {
     
     init() {}
 }
+
+
+struct GetGalaxyData: ApiRequest {
+    typealias Response = [GalaxyData]
+    var urlString: String = "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json"
+}
