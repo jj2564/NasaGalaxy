@@ -15,6 +15,8 @@
 		9D5BF64626F560DC00F988ED /* GalaxyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64526F560DC00F988ED /* GalaxyCell.swift */; };
 		9D5BF64A26F5650F00F988ED /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64926F5650F00F988ED /* AsyncImageView.swift */; };
 		9D5BF64E26F578EA00F988ED /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64D26F578EA00F988ED /* Array+SafeIndex.swift */; };
+		9D5BF65526F609F100F988ED /* GalaxyDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF65426F609F100F988ED /* GalaxyDetailVC.swift */; };
+		9D5BF65726F60D0300F988ED /* GalaxyDeatilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF65626F60D0300F988ED /* GalaxyDeatilView.swift */; };
 		9D85E49D26F2F457003304FD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E49826F2F457003304FD /* Config.swift */; };
 		9D85E4AB26F2F497003304FD /* Dictionary+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A626F2F497003304FD /* Dictionary+Data.swift */; };
 		9D85E4AC26F2F497003304FD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A826F2F497003304FD /* ApiManager.swift */; };
@@ -36,6 +38,8 @@
 		9D5BF64526F560DC00F988ED /* GalaxyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyCell.swift; sourceTree = "<group>"; };
 		9D5BF64926F5650F00F988ED /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		9D5BF64D26F578EA00F988ED /* Array+SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
+		9D5BF65426F609F100F988ED /* GalaxyDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyDetailVC.swift; sourceTree = "<group>"; };
+		9D5BF65626F60D0300F988ED /* GalaxyDeatilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyDeatilView.swift; sourceTree = "<group>"; };
 		9D85E49826F2F457003304FD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		9D85E4A626F2F497003304FD /* Dictionary+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Data.swift"; sourceTree = "<group>"; };
 		9D85E4A826F2F497003304FD /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 			children = (
 				9D5BF63B26F42B0100F988ED /* NasaLabel.swift */,
 				9D5BF64526F560DC00F988ED /* GalaxyCell.swift */,
+				9D5BF65626F60D0300F988ED /* GalaxyDeatilView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 				9D85E4AF26F320DA003304FD /* Model */,
 				9D85E4A426F2F497003304FD /* View */,
 				9D5BF64326F46D4400F988ED /* GalaxyListVC.swift */,
+				9D5BF65426F609F100F988ED /* GalaxyDetailVC.swift */,
 			);
 			path = Galaxy;
 			sourceTree = "<group>";
@@ -213,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D5BF63E26F432E400F988ED /* NavigationController+PushAction.swift in Sources */,
+				9D5BF65726F60D0300F988ED /* GalaxyDeatilView.swift in Sources */,
 				9DF2EE5926F2C3DE003E3BB4 /* ViewController.swift in Sources */,
 				9D85E4AB26F2F497003304FD /* Dictionary+Data.swift in Sources */,
 				9D5BF64E26F578EA00F988ED /* Array+SafeIndex.swift in Sources */,
@@ -223,6 +230,7 @@
 				9DF2EE5526F2C3DE003E3BB4 /* AppDelegate.swift in Sources */,
 				9D5BF64626F560DC00F988ED /* GalaxyCell.swift in Sources */,
 				9D5BF64026F4641700F988ED /* UIScreen+Frame.swift in Sources */,
+				9D5BF65526F609F100F988ED /* GalaxyDetailVC.swift in Sources */,
 				9D5BF64226F4692D00F988ED /* UIView+AutoLayout.swift in Sources */,
 				9D85E49D26F2F457003304FD /* Config.swift in Sources */,
 				9D85E4AD26F2F497003304FD /* ReachAbility.swift in Sources */,

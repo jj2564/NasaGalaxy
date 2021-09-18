@@ -41,6 +41,11 @@ class GalaxyListVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+        print("GalaxyListVC deinit")
+    }
+    
     private func getData() {
         let req = GalaxyDataRequest()
         ApiManager.fetch(from: req) { [weak self] result in
@@ -57,11 +62,6 @@ class GalaxyListVC: UIViewController {
     
     @objc func rotated() {
         updateCollectionLayout()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
-        print("GalaxyListVC deinit")
     }
 }
 
@@ -102,7 +102,6 @@ extension GalaxyListVC: UICollectionViewDelegate, UICollectionViewDataSource {
         dataList.count
     }
     
-    // 好像有的時候還是會發生Timeout之後仍然show出文字
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalaxyCell.cellIdentifier, for: indexPath) as! GalaxyCell
         if let data = dataList[safe: indexPath.row] {
@@ -113,5 +112,12 @@ extension GalaxyListVC: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.view.titleLabel.isHidden = !cell.view.imageView.isValidImage
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let data = dataList[safe: indexPath.row] else { return }
+        let vc = GalaxyDetailVC()
+        vc.data = data
+        navigationController?.pushVC(vc)
     }
 }

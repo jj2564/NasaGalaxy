@@ -9,7 +9,7 @@ import UIKit
 
 class NasaLabel: UILabel {
     
-    private var labelType: LabelType = .none
+    private var labelType: LabelType = .basic
     
     required init( type: LabelType ) {
         super.init(frame: .zero)
@@ -36,13 +36,15 @@ extension NasaLabel {
     enum LabelType {
         case home
         case list
-        case none
+        case detail
+        case basic
         
         var font: UIFont {
             switch self {
             case .home: return .systemFont(ofSize: 25, weight: .bold)
             case .list: return .systemFont(ofSize: 17, weight: .regular)
-            default: return .systemFont(ofSize: 14)
+            case .detail: return .systemFont(ofSize: 18, weight: .light)
+            default: return .systemFont(ofSize: 15)
             }
         }
         
@@ -55,7 +57,7 @@ extension NasaLabel {
         
         var alignment: NSTextAlignment {
             switch self {
-            case .home, .list: return .center
+            case .home, .list, .detail: return .center
             default: return .left
             }
         }

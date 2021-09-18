@@ -13,9 +13,13 @@ let cache = NSCache<NSString, UIImage>()
 class AsyncImageView: UIImageView {
  
     var url: URL?
-    private var session: URLSession!
     /// 超時時間限制，value = 10
-    private let timeout: TimeInterval = 10
+    var timeout: TimeInterval = 10 {
+        didSet { updateSession() }
+    }
+    
+    private var session: URLSession!
+    private lazy var heghtConstraint = NSLayoutConstraint()
     
     var isValidImage: Bool {
         guard let url = url else { return false }
@@ -42,6 +46,10 @@ class AsyncImageView: UIImageView {
         contentMode = .scaleAspectFill
         clipsToBounds = true
         
+        updateSession()
+    }
+    
+    private func updateSession() {
         let config: URLSessionConfiguration = .default
         config.timeoutIntervalForRequest = timeout
         config.timeoutIntervalForResource = timeout
@@ -81,6 +89,7 @@ class AsyncImageView: UIImageView {
                     DispatchQueue.main.async {
                         self.image = image
                         completion(image)
+                        self.updateHeight(image)
                     }
                 }
                 return
@@ -98,5 +107,15 @@ class AsyncImageView: UIImageView {
             }
         }
         task.resume()
+    }
+    
+    /// 在StackView的時候整個空間跳高，因此修飾高度
+    private func updateHeight( _ image: UIImage) {
+        if contentMode == .scaleAspectFit {
+            heghtConstraint = heightAnchor.constraint(equalTo: widthAnchor, multiplier: image.size.height / image.size.width)
+            heghtConstraint.isActive = true
+        } else {
+            heghtConstraint.isActive = false
+        }
     }
 }
