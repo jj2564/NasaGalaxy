@@ -35,24 +35,27 @@ class NasaLabel: UILabel {
 extension NasaLabel {
     enum LabelType {
         case home
+        case list
         case none
         
         var font: UIFont {
             switch self {
             case .home: return .systemFont(ofSize: 25, weight: .bold)
+            case .list: return .systemFont(ofSize: 17, weight: .regular)
             default: return .systemFont(ofSize: 14)
             }
         }
         
         var textColor: UIColor {
             switch self {
+            case .list: return .white
             default: return .black
             }
         }
         
         var alignment: NSTextAlignment {
             switch self {
-            case .home: return .center
+            case .home, .list: return .center
             default: return .left
             }
         }

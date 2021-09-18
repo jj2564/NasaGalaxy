@@ -9,10 +9,6 @@
 
 import Foundation
 
-/// Api callback `completion`
-typealias Completion = (Result<Data, ApiError>) -> Void
-let decoder = JSONDecoder()
-
 enum ApiError: Error {
     
     case networkError
@@ -51,9 +47,30 @@ extension ApiRequest {
     }
 }
 
-class ApiManager: NSObject {
+struct ApiManager {
+    private init() {}
     
-    static let share = ApiManager()
+    public static func fetch<Req: ApiRequest>(from req: Req, completion: @escaping (Result<Req.Response, ApiError>) -> Void ) {
+        OriginURLSession.share.fetch(from: req) { result in
+            switch result {
+            case .success(let req):
+                DispatchQueue.main.async {
+                    completion(.success(req))
+                }
+            case .failure(let err):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    completion(.failure(err))
+                })
+            }
+        }
+    }
+}
+
+fileprivate class OriginURLSession: NSObject {
+    
+    let decoder = JSONDecoder()
+    
+    static let share = OriginURLSession()
     
     private var session: URLSession!
     /// 超時時間限制，value = 10
@@ -61,14 +78,14 @@ class ApiManager: NSObject {
     
     private override init() {
         super.init()
-        let config: URLSessionConfiguration = URLSessionConfiguration.default
+        let config: URLSessionConfiguration = .default
         config.timeoutIntervalForRequest = timeout
         config.timeoutIntervalForResource = timeout
         config.networkServiceType = .background
-        session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+        session = URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }
     
-    public func fetch<Req: ApiRequest>(from req: Req, completion: @escaping (Result<Req.Response, ApiError>) -> Void) {
+    public func fetch<Req: ApiRequest>(from req: Req, completion: @escaping (Result<Req.Response, ApiError>) -> Void ) {
         let reachability = try? Reachability()
         guard let r = reachability, r.isConnectedToNetwork else {
             completion(.failure(ApiError.networkError))
@@ -97,7 +114,7 @@ class ApiManager: NSObject {
                 return
             }
             
-            guard let value = try? decoder.decode(Req.Response.self, from: data) else {
+            guard let value = try? self.decoder.decode(Req.Response.self, from: data) else {
                 completion(.failure(ApiError.jsonError))
                 return
             }
@@ -106,19 +123,4 @@ class ApiManager: NSObject {
         
         task.resume()
     }
-    
-
-}
-
-extension ApiManager: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) { }
-    
-    // Send Data
-    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64,
-                    totalBytesSent: Int64, totalBytesExpectedToSend: Int64) { }
-    
-    // Download Data
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64) { }
 }

@@ -7,16 +7,21 @@
 
 import Foundation
 
+struct GalaxyDataRequest: ApiRequest {
+    typealias Response = [GalaxyData]
+    var urlString: String = "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json"
+}
+
 struct GalaxyData: Decodable {
     
     var description: String = ""
     var copyright: String = ""
     var title: String = ""
-    var url: String = ""
+    var url: URL?
     var apodSite: String = ""
     var date: String = ""
     var mediaType: String = ""
-    var hdURL: String = ""
+    var hdURL: URL?
     
     enum CodingKeys: String, CodingKey {
         case description,copyright, title, url, date
@@ -30,18 +35,14 @@ struct GalaxyData: Decodable {
         description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
         copyright = try container.decodeIfPresent(String.self, forKey: .copyright) ?? ""
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
-        url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
+        let urlString = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
+        url = URL(string: urlString)
         apodSite = try container.decodeIfPresent(String.self, forKey: .apodSite) ?? ""
         date = try container.decodeIfPresent(String.self, forKey: .date) ?? ""
         mediaType = try container.decodeIfPresent(String.self, forKey: .mediaType) ?? ""
-        hdURL = try container.decodeIfPresent(String.self, forKey: .hdURL) ?? ""
+        let hdURLString = try container.decodeIfPresent(String.self, forKey: .hdURL) ?? ""
+        hdURL = URL(string: hdURLString)
     }
     
     init() {}
-}
-
-
-struct GetGalaxyData: ApiRequest {
-    typealias Response = [GalaxyData]
-    var urlString: String = "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json"
 }
