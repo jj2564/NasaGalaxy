@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct GalaxyDataRequest: ApiRequest {
-    typealias Response = [GalaxyData]
-    var urlString: String = "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json"
-}
-
 struct GalaxyData: Decodable {
     
     var description: String = ""
@@ -34,11 +29,22 @@ struct GalaxyData: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
         copyright = try container.decodeIfPresent(String.self, forKey: .copyright) ?? ""
+        copyright = "Credit & Copyright: " + copyright
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
         let urlString = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
         url = URL(string: urlString)
         apodSite = try container.decodeIfPresent(String.self, forKey: .apodSite) ?? ""
-        date = try container.decodeIfPresent(String.self, forKey: .date) ?? ""
+        let oriDateString = try container.decodeIfPresent(String.self, forKey: .date) ?? ""
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        if let oriDate = df.date(from: oriDateString) {
+            df.dateFormat = "yyyy MMM. dd"
+            date = df.string(from: oriDate)
+        } else {
+            date = oriDateString
+        }
+        
         mediaType = try container.decodeIfPresent(String.self, forKey: .mediaType) ?? ""
         let hdURLString = try container.decodeIfPresent(String.self, forKey: .hdURL) ?? ""
         hdURL = URL(string: hdURLString)

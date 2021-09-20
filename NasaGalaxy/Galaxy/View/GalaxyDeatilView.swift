@@ -12,7 +12,7 @@ class GalaxyDeatilView: UIStackView {
     public func updateData(_ data: GalaxyData ) {
         dateLabel.text = data.date
         titleLabel.text = data.title
-        copyrightLabel.text = "Credit & Copyright: " + data.copyright
+        copyrightLabel.text = data.copyright
         contentLabel.text = data.description
         hdImageView.fetchImage(data.hdURL, isHd: true) { _ in }
     }

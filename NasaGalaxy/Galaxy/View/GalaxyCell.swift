@@ -70,7 +70,7 @@ class GalaxyView: UIView {
     
     private func setupLayout() {
         imageView.edgeWithSuperView()
-        titleLabel.edgeWithSuperView(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+        titleLabel.edgeWithSuperView(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: 999)
     }
     
 }

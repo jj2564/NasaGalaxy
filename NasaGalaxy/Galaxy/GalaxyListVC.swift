@@ -11,7 +11,7 @@ import Foundation
 
 class GalaxyListVC: UIViewController {
     
-    private var dataList: [GalaxyData] = []
+    private var viewModel = GalaxyListViewModel()
     private lazy var galaxyCollectionView: UICollectionView = createCollection()
     
     override func loadView() {
@@ -21,29 +21,28 @@ class GalaxyListVC: UIViewController {
         view.addSubview(galaxyCollectionView)
         galaxyCollectionView.edgeWithSuperView()
         updateCollectionLayout()
-        getData()
+        setupViewModel()
     }
     
     deinit {
         print("GalaxyListVC deinit")
     }
     
-    private func getData() {
-        let req = GalaxyDataRequest()
-        ApiManager.fetch(from: req) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.dataList = data
-                self.galaxyCollectionView.reloadData()
-            case .failure(let error):
-                print(error.message)
-            }
+    private func setupViewModel() {
+        // Binding update
+        viewModel.reloadHandler = {
+            self.galaxyCollectionView.reloadData()
         }
+        updateData()
+    }
+    
+    private func updateData() {
+        self.viewModel.fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         updateCollectionLayout()
+        galaxyCollectionView.snapshotView(afterScreenUpdates: true)
     }
 }
 
@@ -81,19 +80,19 @@ extension GalaxyListVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataList.count
+        viewModel.datas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalaxyCell.cellIdentifier, for: indexPath) as! GalaxyCell
-        if let data = dataList[safe: indexPath.row] {
+        if let data = viewModel.datas[safe: indexPath.row] {
             cell.view.updateData(data: data)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let data = dataList[safe: indexPath.row] else { return }
+        guard let data = viewModel.datas[safe: indexPath.row] else { return }
         let vc = GalaxyDetailVC()
         vc.data = data
         navigationController?.pushVC(vc)
