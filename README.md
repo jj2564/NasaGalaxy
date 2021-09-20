@@ -2,7 +2,8 @@
 A project just for practice
 
 ## Demo
-<img src=“https://raw.githubusercontent.com/jj2564/NasaGalaxy/master/ScreenShot/iPhonePortrait.png” width=“320”> <img src=“https://raw.githubusercontent.com/jj2564/NasaGalaxy/master/ScreenShot/iPadLandscape.png” width=“640”>
+![portrait](https://github.com/jj2564/NasaGalaxy/blob/main/ScreenShot/iPhonePortrait.png)
+![landscape](https://github.com/jj2564/NasaGalaxy/blob/main/ScreenShot/iPadLandscape.png)
 
 ## Infro
 用CollectionView，可以對應所有螢幕比例以及轉向的畫面。
