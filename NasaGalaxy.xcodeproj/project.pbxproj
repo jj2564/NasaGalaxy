@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D5BF63C26F42B0100F988ED /* NasaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF63B26F42B0100F988ED /* NasaLabel.swift */; };
+		9D5BF63E26F432E400F988ED /* NavigationController+PushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF63D26F432E400F988ED /* NavigationController+PushAction.swift */; };
+		9D5BF64026F4641700F988ED /* UIScreen+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF63F26F4641700F988ED /* UIScreen+Frame.swift */; };
+		9D5BF64226F4692D00F988ED /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64126F4692D00F988ED /* UIView+AutoLayout.swift */; };
+		9D5BF64426F46D4400F988ED /* GalaxyListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64326F46D4400F988ED /* GalaxyListVC.swift */; };
+		9D5BF64626F560DC00F988ED /* GalaxyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64526F560DC00F988ED /* GalaxyCell.swift */; };
+		9D5BF64A26F5650F00F988ED /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64926F5650F00F988ED /* AsyncImageView.swift */; };
+		9D5BF64E26F578EA00F988ED /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF64D26F578EA00F988ED /* Array+SafeIndex.swift */; };
+		9D5BF65526F609F100F988ED /* GalaxyDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF65426F609F100F988ED /* GalaxyDetailVC.swift */; };
+		9D5BF65726F60D0300F988ED /* GalaxyDeatilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF65626F60D0300F988ED /* GalaxyDeatilView.swift */; };
+		9D5BF65926F819E700F988ED /* UICollectionView+CountInRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF65826F819E700F988ED /* UICollectionView+CountInRow.swift */; };
+		9D5BF65B26F8344200F988ED /* GalaxyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF65A26F8344200F988ED /* GalaxyListViewModel.swift */; };
 		9D85E49D26F2F457003304FD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E49826F2F457003304FD /* Config.swift */; };
-		9D85E4A226F2F481003304FD /* CZMutexLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A026F2F481003304FD /* CZMutexLock.swift */; };
-		9D85E4A326F2F481003304FD /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A126F2F481003304FD /* ThreadSafeDictionary.swift */; };
 		9D85E4AB26F2F497003304FD /* Dictionary+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A626F2F497003304FD /* Dictionary+Data.swift */; };
 		9D85E4AC26F2F497003304FD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A826F2F497003304FD /* ApiManager.swift */; };
 		9D85E4AD26F2F497003304FD /* ReachAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4A926F2F497003304FD /* ReachAbility.swift */; };
-		9D85E4AE26F2F497003304FD /* OriginURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4AA26F2F497003304FD /* OriginURLSession.swift */; };
 		9D85E4B126F32112003304FD /* GalaxyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4B026F32112003304FD /* GalaxyData.swift */; };
 		9D85E4B426F32246003304FD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85E4B326F32246003304FD /* Functions.swift */; };
 		9DF2EE5526F2C3DE003E3BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2EE5426F2C3DE003E3BB4 /* AppDelegate.swift */; };
@@ -23,13 +32,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D5BF63B26F42B0100F988ED /* NasaLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaLabel.swift; sourceTree = "<group>"; };
+		9D5BF63D26F432E400F988ED /* NavigationController+PushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+PushAction.swift"; sourceTree = "<group>"; };
+		9D5BF63F26F4641700F988ED /* UIScreen+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Frame.swift"; sourceTree = "<group>"; };
+		9D5BF64126F4692D00F988ED /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		9D5BF64326F46D4400F988ED /* GalaxyListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyListVC.swift; sourceTree = "<group>"; };
+		9D5BF64526F560DC00F988ED /* GalaxyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyCell.swift; sourceTree = "<group>"; };
+		9D5BF64926F5650F00F988ED /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		9D5BF64D26F578EA00F988ED /* Array+SafeIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
+		9D5BF65426F609F100F988ED /* GalaxyDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyDetailVC.swift; sourceTree = "<group>"; };
+		9D5BF65626F60D0300F988ED /* GalaxyDeatilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyDeatilView.swift; sourceTree = "<group>"; };
+		9D5BF65826F819E700F988ED /* UICollectionView+CountInRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CountInRow.swift"; sourceTree = "<group>"; };
+		9D5BF65A26F8344200F988ED /* GalaxyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyListViewModel.swift; sourceTree = "<group>"; };
 		9D85E49826F2F457003304FD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		9D85E4A026F2F481003304FD /* CZMutexLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CZMutexLock.swift; sourceTree = "<group>"; };
-		9D85E4A126F2F481003304FD /* ThreadSafeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadSafeDictionary.swift; sourceTree = "<group>"; };
 		9D85E4A626F2F497003304FD /* Dictionary+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Data.swift"; sourceTree = "<group>"; };
 		9D85E4A826F2F497003304FD /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		9D85E4A926F2F497003304FD /* ReachAbility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachAbility.swift; sourceTree = "<group>"; };
-		9D85E4AA26F2F497003304FD /* OriginURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginURLSession.swift; sourceTree = "<group>"; };
 		9D85E4B026F32112003304FD /* GalaxyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyData.swift; sourceTree = "<group>"; };
 		9D85E4B326F32246003304FD /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		9DF2EE5126F2C3DE003E3BB4 /* NasaGalaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaGalaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,26 +69,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9D85E49E26F2F481003304FD /* Class */ = {
-			isa = PBXGroup;
-			children = (
-				9D85E49F26F2F481003304FD /* ThreadSafeDictionary */,
-			);
-			path = Class;
-			sourceTree = "<group>";
-		};
-		9D85E49F26F2F481003304FD /* ThreadSafeDictionary */ = {
-			isa = PBXGroup;
-			children = (
-				9D85E4A026F2F481003304FD /* CZMutexLock.swift */,
-				9D85E4A126F2F481003304FD /* ThreadSafeDictionary.swift */,
-			);
-			path = ThreadSafeDictionary;
-			sourceTree = "<group>";
-		};
 		9D85E4A426F2F497003304FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9D5BF63B26F42B0100F988ED /* NasaLabel.swift */,
+				9D5BF64526F560DC00F988ED /* GalaxyCell.swift */,
+				9D5BF65626F60D0300F988ED /* GalaxyDeatilView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -79,6 +83,11 @@
 			isa = PBXGroup;
 			children = (
 				9D85E4A626F2F497003304FD /* Dictionary+Data.swift */,
+				9D5BF64D26F578EA00F988ED /* Array+SafeIndex.swift */,
+				9D5BF63D26F432E400F988ED /* NavigationController+PushAction.swift */,
+				9D5BF63F26F4641700F988ED /* UIScreen+Frame.swift */,
+				9D5BF64126F4692D00F988ED /* UIView+AutoLayout.swift */,
+				9D5BF65826F819E700F988ED /* UICollectionView+CountInRow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -87,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				9D85E4A826F2F497003304FD /* ApiManager.swift */,
-				9D85E4AA26F2F497003304FD /* OriginURLSession.swift */,
+				9D5BF64926F5650F00F988ED /* AsyncImageView.swift */,
 				9D85E4A926F2F497003304FD /* ReachAbility.swift */,
 			);
 			path = Network;
@@ -97,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				9D85E4B026F32112003304FD /* GalaxyData.swift */,
+				9D5BF65A26F8344200F988ED /* GalaxyListViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,8 +114,10 @@
 		9D85E4B226F321F3003304FD /* Galaxy */ = {
 			isa = PBXGroup;
 			children = (
-				9D85E4A426F2F497003304FD /* View */,
 				9D85E4AF26F320DA003304FD /* Model */,
+				9D85E4A426F2F497003304FD /* View */,
+				9D5BF64326F46D4400F988ED /* GalaxyListVC.swift */,
+				9D5BF65426F609F100F988ED /* GalaxyDetailVC.swift */,
 			);
 			path = Galaxy;
 			sourceTree = "<group>";
@@ -132,14 +144,13 @@
 				9D85E4B226F321F3003304FD /* Galaxy */,
 				9D85E4A526F2F497003304FD /* Extensions */,
 				9D85E4A726F2F497003304FD /* Network */,
-				9D85E49E26F2F481003304FD /* Class */,
 				9D85E49826F2F457003304FD /* Config.swift */,
+				9D85E4B326F32246003304FD /* Functions.swift */,
 				9DF2EE5426F2C3DE003E3BB4 /* AppDelegate.swift */,
 				9DF2EE5826F2C3DE003E3BB4 /* ViewController.swift */,
 				9DF2EE5D26F2C3E0003E3BB4 /* Assets.xcassets */,
 				9DF2EE5F26F2C3E0003E3BB4 /* LaunchScreen.storyboard */,
 				9DF2EE6226F2C3E0003E3BB4 /* Info.plist */,
-				9D85E4B326F32246003304FD /* Functions.swift */,
 			);
 			path = NasaGalaxy;
 			sourceTree = "<group>";
@@ -213,17 +224,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D5BF63E26F432E400F988ED /* NavigationController+PushAction.swift in Sources */,
+				9D5BF65726F60D0300F988ED /* GalaxyDeatilView.swift in Sources */,
 				9DF2EE5926F2C3DE003E3BB4 /* ViewController.swift in Sources */,
-				9D85E4AE26F2F497003304FD /* OriginURLSession.swift in Sources */,
 				9D85E4AB26F2F497003304FD /* Dictionary+Data.swift in Sources */,
-				9D85E4A226F2F481003304FD /* CZMutexLock.swift in Sources */,
+				9D5BF65926F819E700F988ED /* UICollectionView+CountInRow.swift in Sources */,
+				9D5BF64E26F578EA00F988ED /* Array+SafeIndex.swift in Sources */,
 				9D85E4B426F32246003304FD /* Functions.swift in Sources */,
+				9D5BF63C26F42B0100F988ED /* NasaLabel.swift in Sources */,
 				9D85E4AC26F2F497003304FD /* ApiManager.swift in Sources */,
+				9D5BF64426F46D4400F988ED /* GalaxyListVC.swift in Sources */,
 				9DF2EE5526F2C3DE003E3BB4 /* AppDelegate.swift in Sources */,
+				9D5BF64626F560DC00F988ED /* GalaxyCell.swift in Sources */,
+				9D5BF64026F4641700F988ED /* UIScreen+Frame.swift in Sources */,
+				9D5BF65526F609F100F988ED /* GalaxyDetailVC.swift in Sources */,
+				9D5BF65B26F8344200F988ED /* GalaxyListViewModel.swift in Sources */,
+				9D5BF64226F4692D00F988ED /* UIView+AutoLayout.swift in Sources */,
 				9D85E49D26F2F457003304FD /* Config.swift in Sources */,
 				9D85E4AD26F2F497003304FD /* ReachAbility.swift in Sources */,
-				9D85E4A326F2F481003304FD /* ThreadSafeDictionary.swift in Sources */,
 				9D85E4B126F32112003304FD /* GalaxyData.swift in Sources */,
+				9D5BF64A26F5650F00F988ED /* AsyncImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
