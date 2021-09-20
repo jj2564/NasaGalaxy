@@ -12,22 +12,7 @@ import Foundation
 class GalaxyListVC: UIViewController {
     
     private var dataList: [GalaxyData] = []
-    
     private lazy var galaxyCollectionView: UICollectionView = createCollection()
-    private var countInRow: (_ verticalSize: UIUserInterfaceSizeClass, _ horizontalSize: UIUserInterfaceSizeClass) -> Int {
-        {(verticalSize: UIUserInterfaceSizeClass, horizontalSize: UIUserInterfaceSizeClass) -> Int in
-            switch (verticalSize, horizontalSize) {
-            case (.regular, .compact): // iPhone portrait
-                return 4
-            case (.compact, .regular), (.compact, .compact): // iPhone landscape
-                return 6
-            case (.regular, .regular): // iPad portrait/landscape
-                return 8
-            default:
-                return 4
-            }
-        }
-    }
     
     override func loadView() {
         super.loadView()
@@ -37,12 +22,9 @@ class GalaxyListVC: UIViewController {
         galaxyCollectionView.edgeWithSuperView()
         updateCollectionLayout()
         getData()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
         print("GalaxyListVC deinit")
     }
     
@@ -60,7 +42,7 @@ class GalaxyListVC: UIViewController {
         }
     }
     
-    @objc func rotated() {
+    override func viewDidLayoutSubviews() {
         updateCollectionLayout()
     }
 }
@@ -81,9 +63,9 @@ extension GalaxyListVC {
         
         let flowLayout = UICollectionViewFlowLayout()
         let spacing = CGFloat(1.5)
-        let span = countInRow(traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass)
+        let span = UICollectionView.countInRow(traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass)
         let total = CGFloat(span - 1) * spacing
-        let width = (UIScreen.main.bounds.width - total) / CGFloat(span)
+        let width = (UIScreen.width - total) / CGFloat(span)
         let height = width
         let itemSize = CGSize(width: width, height: height)
         
@@ -105,11 +87,7 @@ extension GalaxyListVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalaxyCell.cellIdentifier, for: indexPath) as! GalaxyCell
         if let data = dataList[safe: indexPath.row] {
-            cell.view.imageView.fetchImageWithURL(data.url) { _ in
-                cell.view.titleLabel.isHidden = false
-            }
-            cell.view.titleLabel.text = data.title
-            cell.view.titleLabel.isHidden = !cell.view.imageView.isValidImage
+            cell.view.updateData(data: data)
         }
         return cell
     }

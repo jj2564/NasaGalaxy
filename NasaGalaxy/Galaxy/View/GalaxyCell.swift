@@ -30,6 +30,7 @@ class GalaxyCell: UICollectionViewCell {
         super.prepareForReuse()
         view.imageView.image = nil
         view.titleLabel.text = ""
+        view.titleLabel.isHidden = true
     }
 }
 
@@ -37,12 +38,12 @@ class GalaxyView: UIView {
     
     public func updateData(data: GalaxyData) {
         self.data = data
-        titleLabel.isHidden = !imageView.isValidImage
         
-        imageView.fetchImageWithURL(data.url) { [weak self] _ in
-            self?.titleLabel.isHidden = false
+        imageView.fetchImage(data.url) { [weak self] success in
+            self?.titleLabel.isHidden = !success
         }
         titleLabel.text = data.title
+        titleLabel.isHidden = !imageView.isValidImage
     }
     
     lazy var imageView = AsyncImageView()

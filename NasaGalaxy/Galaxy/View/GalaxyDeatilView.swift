@@ -14,7 +14,7 @@ class GalaxyDeatilView: UIStackView {
         titleLabel.text = data.title
         copyrightLabel.text = "Credit & Copyright: " + data.copyright
         contentLabel.text = data.description
-        hdImageView.fetchImageWithURL(data.hdURL) { _ in }
+        hdImageView.fetchImage(data.hdURL, isHd: true) { _ in }
     }
     
     private lazy var dateLabel = NasaLabel(type: .detail)
@@ -30,7 +30,7 @@ class GalaxyDeatilView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
         alignment = .center
-        spacing = 5
+        spacing = 10
         setupViews()
     }
     
@@ -49,7 +49,6 @@ class GalaxyDeatilView: UIStackView {
         
         hdImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         hdImageView.contentMode = .scaleAspectFit
-        hdImageView.timeout = 999
     }
     
     required init(coder: NSCoder) {

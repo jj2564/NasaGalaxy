@@ -6,7 +6,7 @@
 //
 
 // 這是以前寫來對應api的精簡版
-
+import UIKit
 import Foundation
 
 enum ApiError: Error {
@@ -48,42 +48,27 @@ extension ApiRequest {
 }
 
 struct ApiManager {
-    private init() {}
     
     public static func fetch<Req: ApiRequest>(from req: Req, completion: @escaping (Result<Req.Response, ApiError>) -> Void ) {
-        OriginURLSession.share.fetch(from: req) { result in
+        ApiManagerURLSession.share.fetch(from: req) { result in
             switch result {
             case .success(let req):
                 DispatchQueue.main.async {
                     completion(.success(req))
                 }
             case .failure(let err):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                DispatchQueue.main.async {
                     completion(.failure(err))
-                })
+                }
             }
         }
     }
 }
 
-fileprivate class OriginURLSession: NSObject {
+class ApiManagerURLSession: NSObject {
     
     let decoder = JSONDecoder()
-    
-    static let share = OriginURLSession()
-    
-    private var session: URLSession!
-    /// 超時時間限制，value = 10
-    private let timeout: TimeInterval = 10
-    
-    private override init() {
-        super.init()
-        let config: URLSessionConfiguration = .default
-        config.timeoutIntervalForRequest = timeout
-        config.timeoutIntervalForResource = timeout
-        config.networkServiceType = .background
-        session = URLSession(configuration: config, delegate: nil, delegateQueue: nil)
-    }
+    static let share = ApiManagerURLSession()
     
     public func fetch<Req: ApiRequest>(from req: Req, completion: @escaping (Result<Req.Response, ApiError>) -> Void ) {
         let reachability = try? Reachability()
@@ -96,9 +81,9 @@ fileprivate class OriginURLSession: NSObject {
             return
         }
         var urlRequest = URLRequest(url: url)
-        urlRequest.timeoutInterval = timeout
+        urlRequest.timeoutInterval = 10
         
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let _ = (response as? HTTPURLResponse)?.statusCode else {
                 completion(.failure(ApiError.networkError))
                 return
@@ -121,6 +106,31 @@ fileprivate class OriginURLSession: NSObject {
             completion(.success(value))
         }
         
+        task.resume()
+    }
+    
+    public func fetchImageWithURL(_ url: URL?, isHd: Bool = false, completion: @escaping ((Result<UIImage, ApiError>, URL?) -> Void) ) {
+        guard let url = url else {
+            completion(.failure(.invalidUrl), nil)
+            return
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = isHd ? 999 : 30
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            var currentURL = response?.url
+            if let data = data, let image = UIImage(data: data) {
+                completion(.success(image), currentURL)
+                return
+            }
+            
+            if let errorDict = (error as NSError?)?.userInfo,
+               let url = errorDict["NSErrorFailingURLKey"] as? URL {
+                currentURL = url
+            }
+            completion(.failure(.nilData), currentURL)
+        }
         task.resume()
     }
 }
