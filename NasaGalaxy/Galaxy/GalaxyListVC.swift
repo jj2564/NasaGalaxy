@@ -30,7 +30,8 @@ class GalaxyListVC: UIViewController {
     
     private func setupViewModel() {
         // Binding update
-        viewModel.reloadHandler = {
+        viewModel.reloadHandler = { [weak self] in
+            guard let self = self else { return }
             self.galaxyCollectionView.reloadData()
         }
         updateData()
