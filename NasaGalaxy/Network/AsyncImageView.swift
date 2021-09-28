@@ -73,7 +73,10 @@ class AsyncImageView: UIImageView {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let image):
-                    cache.setObject(image, forKey: key)
+                    if let name = responseURL?.lastPathComponent {
+                        let key = NSString(string: name)
+                        cache.setObject(image, forKey: key)
+                    }
                     if self.url == responseURL {
                         self.image = image
                         self.updateHeight(image)
