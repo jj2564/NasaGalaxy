@@ -95,7 +95,7 @@ extension GalaxyListVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let data = viewModel.datas[safe: indexPath.row] else { return }
         let vc = GalaxyDetailVC()
-        vc.data = data
+        vc.setupData(data)
         navigationController?.pushVC(vc)
     }
 }

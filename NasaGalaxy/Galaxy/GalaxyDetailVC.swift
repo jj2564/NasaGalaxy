@@ -10,7 +10,15 @@ import Foundation
 
 class GalaxyDetailVC: UIViewController {
     
-    public var data: GalaxyData!
+    public func setupData(_ data: GalaxyData) {
+        self.data = data
+    }
+    
+    private var data: GalaxyData? {
+        didSet {
+            updateView()
+        }
+    }
     
     private lazy var galaxyScrollView = createScrollView()
     private lazy var galaxyDetailView = GalaxyDeatilView()
@@ -20,20 +28,24 @@ class GalaxyDetailVC: UIViewController {
     override func loadView() {
         super.loadView()
         setup()
+        updateView()
     }
-
+    
     private func setup() {
-        navigationItem.title = data.title
         view.backgroundColor = .white
         view.addSubview(galaxyScrollView)
         galaxyScrollView.edgeWithSuperView()
-        
         galaxyScrollView.addSubview(galaxyDetailView)
         galaxyDetailView.edgeWithSuperView()
-        galaxyDetailView.updateData(data)
-        
         widthConstraint = galaxyDetailView.widthAnchor.constraint(equalTo: view.widthAnchor)
         widthConstraint.isActive = true
+    }
+    
+    private func updateView() {
+        guard let data = data else { return }
+
+        navigationItem.title = data.title
+        galaxyDetailView.updateData(data)
     }
 }
 
