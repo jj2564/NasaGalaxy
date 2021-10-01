@@ -36,11 +36,8 @@ struct GalaxyData: Decodable {
         apodSite = try container.decodeIfPresent(String.self, forKey: .apodSite) ?? ""
         let oriDateString = try container.decodeIfPresent(String.self, forKey: .date) ?? ""
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        if let oriDate = df.date(from: oriDateString) {
-            df.dateFormat = "yyyy MMM. dd"
-            date = df.string(from: oriDate)
+        if let oriDate = DateFormatter.orginFormatter.date(from: oriDateString) {
+            date = DateFormatter.resultFormatter.string(from: oriDate)
         } else {
             date = oriDateString
         }
@@ -52,3 +49,4 @@ struct GalaxyData: Decodable {
     
     init() {}
 }
+

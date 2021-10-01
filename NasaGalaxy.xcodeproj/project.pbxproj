@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D53793F2706DFDE00616B83 /* DateFormatter+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D53793E2706DFDD00616B83 /* DateFormatter+Format.swift */; };
 		9D5BF63C26F42B0100F988ED /* NasaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF63B26F42B0100F988ED /* NasaLabel.swift */; };
 		9D5BF63E26F432E400F988ED /* NavigationController+PushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF63D26F432E400F988ED /* NavigationController+PushAction.swift */; };
 		9D5BF64026F4641700F988ED /* UIScreen+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BF63F26F4641700F988ED /* UIScreen+Frame.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D53793E2706DFDD00616B83 /* DateFormatter+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Format.swift"; sourceTree = "<group>"; };
 		9D5BF63B26F42B0100F988ED /* NasaLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaLabel.swift; sourceTree = "<group>"; };
 		9D5BF63D26F432E400F988ED /* NavigationController+PushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+PushAction.swift"; sourceTree = "<group>"; };
 		9D5BF63F26F4641700F988ED /* UIScreen+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Frame.swift"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				9D5BF63F26F4641700F988ED /* UIScreen+Frame.swift */,
 				9D5BF64126F4692D00F988ED /* UIView+AutoLayout.swift */,
 				9D5BF65826F819E700F988ED /* UICollectionView+CountInRow.swift */,
+				9D53793E2706DFDD00616B83 /* DateFormatter+Format.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				9D5BF64026F4641700F988ED /* UIScreen+Frame.swift in Sources */,
 				9D5BF65526F609F100F988ED /* GalaxyDetailVC.swift in Sources */,
 				9D5BF65B26F8344200F988ED /* GalaxyListViewModel.swift in Sources */,
+				9D53793F2706DFDE00616B83 /* DateFormatter+Format.swift in Sources */,
 				9D5BF64226F4692D00F988ED /* UIView+AutoLayout.swift in Sources */,
 				9D85E49D26F2F457003304FD /* Config.swift in Sources */,
 				9D85E4AD26F2F497003304FD /* ReachAbility.swift in Sources */,
